@@ -1,0 +1,38 @@
+.up-container{
+    display: flex;
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 60px;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100vw;
+    
+}
+.verify-button{
+    margin-left: 170px;
+}
+.description{
+    /* margin: 20px; */
+    margin-top: -5px;
+    margin-left: 4px;
+    height: 100px;
+    width: 350px;
+    color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 15px;
+}
+
+.childBio{
+    border:2px linear-gradient(to right, #2b9ac6, #194759) groove;
+    background-color: #194759;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #2b9ac6, #194759);
+}
+.info-point{
+    color: #194759;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

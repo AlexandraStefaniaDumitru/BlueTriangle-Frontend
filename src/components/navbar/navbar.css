@@ -1,0 +1,24 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    width: 100%;
+    /* background-color: rgb(66, 166, 188); */
+    background-color: #194759;
+  }
+  
+  .navbar-left a img,
+  .navbar-right a img {
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+  }
+  
+  
+  .navbar-right img {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+  

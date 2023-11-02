@@ -1,0 +1,30 @@
+.table-container {
+  margin-top: 50px;
+  width: 100%;
+  border-collapse: collapse;
+  bottom: 10px;
+  
+}
+
+.table-container th{
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+.table-container td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  color: #194759;
+}
+
+.table-container thead {
+  background-color: #194759;
+}
+
+.table-container tbody tr:nth-child(even) {
+  background-color: #d7f0f1;
+}
+
+.table-container tbody tr:hover {
+  background-color: #7EBFB3;
+}
+

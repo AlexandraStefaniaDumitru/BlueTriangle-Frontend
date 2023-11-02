@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    color: #fff;
+}
+
+body {
+    min-height: 100vh;
+    background-color: lightblue;
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  padding: 1rem 0.5rem;
+}
+
+section {
+    width: 100%;
+    max-width: 420px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    background-color: #194759;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+} */
+
+a, a:visited {
+    color: #fff;
+}
+
+/* input[type="text"],
+input[type="password"],
+button,
+textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+} */
+
+label,
+button {
+  margin-top: 1rem;
+}
+
+button {
+  padding: 0.5rem;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions > svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
+}
+
+/* .valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+} */
+
+/* .errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.line {
+    display: inline-block;
+} */
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#duration{
+    width: 385px;
+}
+
+select{
+    text-align-last:left;
+    padding-right: 35px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+    text-align: center;
+    align-self: center;
+}
+
+option{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+
+}
+
+.valid{
+    border-color: black;
+}
+
+.notValid{
+    border-color: red;
+}
+
+.alert alert-warning alert-dismissible fade show{
+    font-size: smaller;
+}
+h1{
+    text-align: center;
+}
+span{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: big;
+    align-self: center;
+    color: black;
+
+}
+
+.error{
+    font-size: medium;
+    color: black;
+}
+
+
+.ok{
+    font-size: medium;
+    color: black;
+}
+.moveRight {
+    /* position: absolute;
+    right: 0;
+    bottom: 0; */
+    display: flex;
+    margin: 0;
+}
+
+.moveRight {
+    /* position: absolute;
+    right: 0;
+    bottom: 0; */
+    display: flex;
+}
+
+.image-list-container {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+  }
+
+ 
+
+.image-box {
+
+  background-color: white;
+
+  width: 200px;
+
+  margin: 5px;
+
+  border: 2px solid black;
+
+  padding: 5px;
+
+  text-align: center;
+
+}
+
+
+
+
+.custom-image {
+
+  width: auto;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  max-height: 100%;
+
+}
+
+.image-text-box {
+
+  color: black;
+
+  margin-top: 10px;
+
+}
+
+.image-text-box p {
+
+  font-size: 12px;
+
+  margin: 10px 0;
+
+}
+
+
+.child-page-container {
+
+  display: flex;
+  align-items: flex-start;
+
+}
+
+
+.child-image-container {
+
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 40px;
+  padding-bottom: 0%;
+ }
+
+.child-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border: 2px solid white;
+
+}
+
+.child-info-container {
+
+  flex: 1;
+
+}
+
+.child-info-container h2 {
+
+  margin-top: 0;
+
+}
+
+
+
+
+.child-info-container p {
+
+  margin: 0;
+
+}
+
+.raportActivitate {
+  width: 400px;
+  height: 100px;
+}
+
+.submitButton{
+  background-color:  #194759;
+  color:white;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  width: 150px;
+  height: 60px;
+  border-radius: 12px;
+}
+
+.formStyling{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color:  #194759;
+}
+
+.registerLine {
+  display: inline-block;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.loginLine {
+  display: inline-block;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
