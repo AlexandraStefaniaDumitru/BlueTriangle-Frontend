@@ -7,10 +7,12 @@ import axios from "../api/axios";
 import UserPhoto from "./UserPhoto";
 import History from "./History";
 import LandingPage from "./LandingPage";
+import Rank from "./Rank";
 
 import "./profile.css";
 
 const Profile = ({ userData, setUserData }) => {
+  
   if(Object.keys(userData).length === 0)
   return <LandingPage></LandingPage>;
   const [activities, setActivities] = useState([]);
@@ -34,11 +36,14 @@ const Profile = ({ userData, setUserData }) => {
   const handleVerify = () => {
     window.open("https://forms.gle/txozndKyXwL9o9TU9", "_blank");
   };
+ 
   return (
     <>
-      <Navbar userData={userData} setUserData={setUserData} />
+   
+      <Navbar score = {score} userData={userData} setUserData={setUserData} />
       <div className="profile-container">
         <UserPhoto userData={userData} />
+        <Rank score={userData.score}></Rank>
         <Map lat={userData.lat} lng={userData.lng} />
       </div>
       {!userData.verified && (
