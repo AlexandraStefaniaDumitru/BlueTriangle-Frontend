@@ -8,9 +8,15 @@ import Profile from "./components/Profile";
 import Child from "./components/Child";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
+import CommunityActivity from "./components/CommunityActivity.jsx";
+import CommunityActivityForm from "./components/CommunityActivityForm.jsx";
 
 function App() {
   const [userData, setUserData] = useState({});
+  const handleCreateActivity = (activityData) => {
+    console.log('Form Submitted', activityData);
+  };
+
   return (
     <Router>
       <main className="App">
@@ -36,6 +42,14 @@ function App() {
           <Route
             path="/profile/:username"
             element={<Profile userData={userData} setUserData={setUserData} />}
+          />
+          <Route
+            path="/community-activities/:username"
+            element={<CommunityActivity userData={userData} setUserData={setUserData}/>}
+          />
+          <Route
+              path="/community-activities/create/:username"
+              element={<CommunityActivityForm onSubmit={handleCreateActivity} userData={userData} setUserData={setUserData}/>}
           />
         </Routes>
       </main>
