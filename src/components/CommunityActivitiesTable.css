@@ -1,0 +1,62 @@
+.community-activities-table {
+    margin-top: 50px;
+    width: 100%;
+    border-collapse: collapse;
+    bottom: 10px;
+}
+
+.community-activities-table th {
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #194759;
+    color: white;
+    text-align: left;
+}
+
+.community-activities-table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    color: #194759;
+}
+
+.community-activities-table tbody tr:nth-child(even) {
+    background-color: #d7f0f1;
+}
+
+.community-activities-table tbody tr:hover {
+    background-color: #7EBFB3;
+}
+
+.success-message {
+    color: green;
+    margin-top: 10px;
+}
+
+.community-activities-table button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.community-activities-table button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.community-activities-table button:hover {
+    background-color: #45a049;
+}
+
+.community-activities-table button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #ccc;
+}

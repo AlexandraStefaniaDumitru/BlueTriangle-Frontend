@@ -1,6 +1,6 @@
 import BookAppointment from "./BookAppointment";
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import {useParams} from "react-router-dom";
+import {useState, useEffect} from "react";
 import Navbar from "./navbar/Navbar";
 import Map from "./map/Map";
 import axios from "../api/axios";
@@ -15,21 +15,36 @@ const Profile = ({ userData, setUserData }) => {
   if (Object.keys(userData).length === 0) return <LandingPage></LandingPage>;
   const [activities, setActivities] = useState([]);
 
-  const getAllActivities = () => {
-    console.log("get all");
-    axios
-      .get(`http://localhost:8080/api/activities/${userData.username}`)
-      .then((response) => {
-        setActivities(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Error retrieving activities:", error);
-      });
-  };
-  useEffect(() => {
-    getAllActivities();
-  }, [userData]);
+    const getAllActivities = () => {
+        console.log("get all");
+        axios
+            .get(`http://localhost:8080/api/activities/${userData.username}`)
+            .then((response) => {
+                setActivities(response.data);
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error("Error retrieving activities:", error);
+            });
+    };
+    useEffect(() => {
+        getAllActivities();
+    }, [userData]);
+
+    const [communityActivities, setCommunityActivities] = useState([]);
+    const getAllCommunityActivities = () => {
+        axios.get(`http://localhost:8080/api/community-activities/all-community-activities/${userData.username}`)
+            .then((response) => {
+                setCommunityActivities(response.data);
+                console.log("communityActivities", response.data);
+            })
+            .catch((error) => {
+                console.error("Error retrieving community activities:", error)
+            });
+    };
+    useEffect(() => {
+        getAllCommunityActivities();
+    }, [userData]);
 
   const handleVerify = () => {
     window.open("https://forms.gle/txozndKyXwL9o9TU9", "_blank");
@@ -53,9 +68,9 @@ const Profile = ({ userData, setUserData }) => {
         </button>
       )}
 
-      <History data={activities} />
-    </>
-  );
+            <History data={activities} communityData={communityActivities} userData={userData}/>
+        </>
+    );
 };
 
 export default Profile;
