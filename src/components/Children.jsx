@@ -51,9 +51,11 @@ const Children = ({ userData, setUserData }) => {
   const [childrenData, setChildrenData] = useState([]);
 
   useEffect(() => {
-    const fetchChildrenData = async () => {
+    const fetchKnownChildrenData = async () => {
       try {
-        const response = await axios.get(CHILDREN_URL);
+        const response = await axios.get(
+          CHILDREN_URL + `/known/${userData.username}`
+        );
         const children = response.data;
         setChildrenData(children);
       } catch (error) {
@@ -61,7 +63,7 @@ const Children = ({ userData, setUserData }) => {
       }
     };
 
-    fetchChildrenData();
+    fetchKnownChildrenData();
   }, []);
 
   return (

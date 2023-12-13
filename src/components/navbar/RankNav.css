@@ -1,0 +1,21 @@
+.rank-container {
+    padding-top:10px;
+    width:100px;
+}
+.div{
+    padding-top:10px;
+}
+.rank-image {
+    width: 80px; /* Ajustează lățimea imaginii la dimensiunea dorită */
+    height: auto; /* Păstrează proporțiile originale ale imaginii */
+    /* Alte stiluri, cum ar fi margin, padding, etc. */
+}
+
+
+p {
+    font-size: 20px; /* Adjust the font size as needed */
+    line-height: 1.5; /* Set the line height for better readability */
+    color: #ffffff; /* Set the text color */
+    
+    margin-bottom: 16px; /* Add some bottom margin for spacing between paragraphs */
+}

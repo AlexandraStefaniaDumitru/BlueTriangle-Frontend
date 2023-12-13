@@ -19,11 +19,12 @@
 }
 
 .fragment {
+  padding-bottom:-50px;
   left: 10px;
 }
 
 .heading {
-  font-size: 40px;
+  font-size: 30px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: #194759;
 }
