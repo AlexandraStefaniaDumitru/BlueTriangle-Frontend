@@ -12,9 +12,7 @@ import Rank from "./Rank";
 import "./profile.css";
 
 const Profile = ({ userData, setUserData }) => {
-  
-  if(Object.keys(userData).length === 0)
-  return <LandingPage></LandingPage>;
+  if (Object.keys(userData).length === 0) return <LandingPage></LandingPage>;
   const [activities, setActivities] = useState([]);
 
   const getAllActivities = () => {
@@ -36,11 +34,14 @@ const Profile = ({ userData, setUserData }) => {
   const handleVerify = () => {
     window.open("https://forms.gle/txozndKyXwL9o9TU9", "_blank");
   };
- 
+
   return (
     <>
-   
-      <Navbar score = {score} userData={userData} setUserData={setUserData} />
+      <Navbar
+        score={userData.score}
+        userData={userData}
+        setUserData={setUserData}
+      />
       <div className="profile-container">
         <UserPhoto userData={userData} />
         <Rank score={userData.score}></Rank>
