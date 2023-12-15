@@ -3,12 +3,12 @@ import axios from "../api/axios";
 import { Link } from "react-router-dom";
 import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 const PROFILE_URL = "/api/users/profile";
-const ACTIVITIES_URL = "/api/activities";
+const ACTIVITIES_URL = "/api/activities/multiple-dates";
 const USERS_URL = "/api/users";
 const CHILDREN_URL = "/api/children";
 
 const BookAppointment = ({ child, userdata }) => {
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState([]);
   const [duration, setDuration] = useState("0");
   const [description, setDescription] = useState("");
   const [currentChild, setCurrentChild] = useState("");
@@ -29,11 +29,11 @@ const BookAppointment = ({ child, userdata }) => {
     setUsername(userdata.username);
     getChildren();
   }, []);
-  function validateActivityDate(date) {
-    const isNotEmpty = date.length > 0;
-
-    setValidDate(isNotEmpty ? "valid" : "notValid");
-    return isNotEmpty;
+  function validateActivityDate(dates) {
+    const isValid = dates.every(date => date.length > 0);
+    
+    setValidDate(isValid ? 'valid' : 'notValid');
+    return isValid;
   }
   function validateDuration(duration) {
     const isNotEmpty = 1 <= duration && duration <= 10;
@@ -75,6 +75,7 @@ const BookAppointment = ({ child, userdata }) => {
     const flag = vDate && vDuration && vDescription;
     setValidationFlag(flag);
     console.log(description);
+    console.log(date);
     if (flag) {
       console.log("aici");
       try {
@@ -83,7 +84,7 @@ const BookAppointment = ({ child, userdata }) => {
           JSON.stringify({
             adultName: userdata.username,
             childName: child.name,
-            activityDate: date,
+            activityDates: date,
             duration: duration,
             description: description,
           }),
@@ -112,10 +113,10 @@ const BookAppointment = ({ child, userdata }) => {
             id="date"
             onChange={(e) => {
               setValidationFlag(true);
-              setDate(e.target.value);
+              setDate(e.target.value.split(', '));
             }}
-            value={date}
-            placeholder="YYYY-MM-DD"
+            value={date.join(', ')}
+            placeholder="YYYY-MM-DD, YYYY-MM-DD ..."
             required
           />
         </div>
