@@ -1,12 +1,12 @@
 import {useState, useEffect} from "react";
 import Navbar from "./navbar/Navbar";
-import Map from "./map/Map";
 import axios from "../api/axios";
 import UserPhoto from "./UserPhoto";
 import LandingPage from "./LandingPage";
 
-import "./profile.css";
+import "./CommunityActivity.css";
 import CommunityActivitiesTable from "./CommunityActivitiesTable.jsx";
+import Rank from "./Rank.jsx";
 
 const CommunityActivity = ({userData, setUserData}) => {
     if (Object.keys(userData).length === 0)
@@ -30,17 +30,19 @@ const CommunityActivity = ({userData, setUserData}) => {
     return (
         <>
             <Navbar userData={userData} setUserData={setUserData}/>
-            <div className="profile-container">
-                <UserPhoto userData={userData}/>
-                <Map lat={userData.lat} lng={userData.lng}/>
-            </div>
-            {!userData.verified && (
-                <button type="button" className="eval-button" onClick={handleVerify}>
-                    Verify
-                </button>
-            )}
+            <div className="profile-rank-container">
+                <div>
+                    <UserPhoto userData={userData}/>
+                    <div className="rank-container-table">
+                        <Rank score={userData.score}></Rank>
+                    </div>
 
-            <CommunityActivitiesTable activities={communityActivities} currentUser={userData} setActivities={setCommunityActivities}/>
+                </div>
+                <div>
+                    <CommunityActivitiesTable activities={communityActivities} currentUser={userData}
+                                              setActivities={setCommunityActivities}/>
+                </div>
+            </div>
         </>
     );
 }

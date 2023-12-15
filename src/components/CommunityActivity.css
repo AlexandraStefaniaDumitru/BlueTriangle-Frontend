@@ -1,0 +1,19 @@
+.profile-rank-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/*.table-container {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    margin-left: 20px;*/
+/*}*/
+
+.rank-container-table{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
