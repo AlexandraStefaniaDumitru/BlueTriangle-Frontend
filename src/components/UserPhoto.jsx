@@ -11,6 +11,7 @@ const UserPhoto = ({ userData }) => {
       <div className="child-image-container">
         <img src={photoURL} alt={userData.username} className="child-image" />
         <h2>{userData.username}</h2>
+          <h5>{userData.email}</h5>
       </div>
     </div>
   );
