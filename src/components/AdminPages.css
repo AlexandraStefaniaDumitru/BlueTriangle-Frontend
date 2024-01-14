@@ -1,3 +1,45 @@
 ﻿.tab-title {
     margin-top: 2%;
 }
+
+.tab-empty-list {
+    text-align: center;
+    color: darkred;
+    margin-top: 10%;
+}
+
+.table-container {
+    margin: 50px auto 10px;
+    width: 90%;
+}
+
+.table-container th{
+    border: 1px solid #ccc;
+}
+.table-container td {
+    border: 1px solid #ccc;
+    color: #194759;
+    text-align: center;
+}
+
+.table-container thead {
+    background-color: #194759;
+}
+
+.table-container tbody tr:nth-child(even) {
+    background-color: #d7f0f1;
+}
+
+.table-container td img {
+    width: 45px;
+    height: 45px;
+    display: inline-block; 
+    margin: 0 5px;
+}
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh; 
+}
+
