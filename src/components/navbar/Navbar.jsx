@@ -57,9 +57,6 @@ const Navbar = ({score, userData, setUserData}) => {
                 <Link to="/register">
                     <img src={signUp} alt="Register"/>
                 </Link>
-                <Link to="/login">
-                    <img src={login} alt="Login"/>
-                </Link>
                 <Link to={profile}>
                     <img src={profileImage} alt="Profile"/>
                 </Link>
@@ -68,9 +65,6 @@ const Navbar = ({score, userData, setUserData}) => {
                         <img src={childrenImage} alt="Children"/>
                     </Link>
                 )}
-                <Link to={profile}>
-                    <img src={rankInfo[currentRankLevel].image} alt="Profile"/>
-                </Link>
                 <Link to={communityActivities}>
                     <img src={communityActivitiesImage} alt="Community activities"/>
                 </Link>
