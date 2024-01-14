@@ -40,9 +40,16 @@ const Login = ({ userData, setUserData }) => {
       );
       console.log(response.data);
       setUserData(response.data);
-      setTimeout(() => {
-        navigate(`/profile/:${userData.username}`);
-      }, 1000);
+      if (response.data.role.role === "user" ) {
+        setTimeout(() => {
+          navigate(`/profile/:${userData.username}`);
+        }, 1000);
+      }
+      else {
+        setTimeout(() => {
+          navigate(`/verify-user`);
+        }, 1000);
+      }
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

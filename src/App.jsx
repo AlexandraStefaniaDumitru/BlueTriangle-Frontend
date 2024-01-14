@@ -10,6 +10,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import CommunityActivity from "./components/CommunityActivity.jsx";
 import CommunityActivityForm from "./components/CommunityActivityForm.jsx";
+import VerifyUser from "./components/VerifyUser.jsx";
+import VerifyActivity from "./components/VerifyActivity.jsx";
+import GiveFeedback from "./components/GiveFeedback.jsx";
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -51,6 +54,18 @@ function App() {
               path="/community-activities/create/:username"
               element={<CommunityActivityForm onSubmit={handleCreateActivity} userData={userData} setUserData={setUserData}/>}
           />
+          <Route
+            path="/verify-user"
+            element={<VerifyUser/>}
+            />
+          <Route
+            path="/verify-activity"
+            element={<VerifyActivity/>}
+            />
+          <Route
+            path="/give-feedback"
+            element={<GiveFeedback/>}
+            />
         </Routes>
       </main>
     </Router>
