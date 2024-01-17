@@ -57,8 +57,24 @@ const VerifyUser = () => {
         setSuccessMessage("User successfully verified!");
     };
 
-    const handleCancel = (item) => {
+    const handleCancel = async (item) => {
         console.log("Cancel clicked:", item);
+        try {
+            console.log(VERIFY_URL);
+            const response = await axios.post(
+                "/api/users/verify-false",
+                JSON.stringify({
+                    username: item.username,
+                    password: item.password,
+                }),
+                {
+                    headers: {"Content-Type": "application/json"},
+                }
+            );
+            console.log(response.data);
+        } catch (err) {
+            console.log(err);
+        }
         const updatedUsers = users.filter((user) => user.id !== item.id);
         setUsers(updatedUsers);
         setDenyMessage("User denied!");

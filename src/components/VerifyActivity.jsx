@@ -89,9 +89,29 @@ const VerifyActivity = () => {
         setDenyMessage("");
     };
 
-    const handleCancel = (item) => {
+    const handleCancel = async (item, type) => {
         console.log("Cancel clicked:", item);
-        // Remove the item from the list
+        try {
+            if (type === 0) {
+                VERIFY_URL = "/api/activities/verify-false"
+            } else {
+                VERIFY_URL = "/api/community-activities/verify-false"
+            }
+            console.log(VERIFY_URL);
+            const response = await axios.post(
+                VERIFY_URL,
+                JSON.stringify({
+                    description: item.description,
+                    date: item.date,
+                }),
+                {
+                    headers: {"Content-Type": "application/json"},
+                }
+            );
+            console.log(response.data);
+        } catch (err) {
+            console.log(err);
+        }
         const updatedActivities = activities.filter((activity) => activity.id !== item.id);
         setActivities(updatedActivities);
         setDenyMessage("Activity denied!");
@@ -162,7 +182,7 @@ const VerifyActivity = () => {
                                 <img
                                     src={cancel}
                                     alt="Cancel"
-                                    onClick={() => handleCancel(item)}
+                                    onClick={() => handleCancel(item, 1)}
                                     style={{ cursor: "pointer" }}
                                 />
                             </td>
