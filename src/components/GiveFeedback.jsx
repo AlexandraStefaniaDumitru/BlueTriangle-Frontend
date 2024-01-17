@@ -3,227 +3,208 @@ import axios from "../api/axios.js";
 import { CircularProgress, Snackbar, Alert } from "@mui/material";
 import accept from "../../assets/accept.png";
 import NavbarAdmin from "./navbar/NavbarAdmin.jsx";
- 
+import cancel from "../../assets/cancel.png";
+let VERIFY_URL = "";
 const GiveFeedback = () => {
   const [activities, setActivities] = useState([]);
   const [communityActivities, setCommunityActivities] = useState([]);
-  const [newScores, setNewScores] = useState([]);
   const [loadingActivity, setLoadingActivity] = useState(true);
-  const [error, setError] = useState("");
-  const [loadingCommunityActivity, setLoadingCommunityActivity] =
-    useState(true);
-    const [flag, setFlag] = useState(false);
-  const ACTIVITIES_URL = "/api/activities/feedback";
-  const COMMUNITYACTIVITIES_URL = "api/community-activities/feedback";
+  const [loadingCommunity, setLoadingCommunity] = useState(true);
+  const [newScoresActivities, setNewScoresActivities] = useState([]);
+  const [newScoresCommunity, setNewScoresCommunity] = useState([]);
+
   const [successMessage, setSuccessMessage] = useState("");
- 
+  const [denyMessage, setDenyMessage] = useState("");
+
   const getAllActivities = () => {
-    console.log("get all activities");
-    axios
-      .get(`http://localhost:8080/api/activities`)
-      .then((response) => {
-        // Filtrăm activitățile cu date viitoare și hasFeedback setat la false
-        const filteredActivities = response.data.filter(
-          (activity) =>
-            new Date(activity.date) < new Date() && !activity.hasFeedback
-        );
- 
-        setActivities(filteredActivities);
-        console.log(filteredActivities);
-      })
-      .catch((error) => {
-        console.error("Error retrieving activities:", error);
-      })
-      .finally(() => {
-        // Set loading to false when the data is loaded or an error occurs
-        setLoadingActivity(false);
-      });
+      console.log("Getting all activities");
+      axios
+          .get(`http://localhost:8080/api/activities`)
+          .then((response) => {
+              const filteredActivities = response.data.filter((item) => !item.hasFeedback);
+              setActivities(filteredActivities);
+              console.log(filteredActivities);
+          })
+          .catch((error) => {
+              console.error("Error retrieving activities:", error);
+          })
+          .finally(() => {
+              // Set loading to false when the data is loaded or an error occurs
+              setLoadingActivity(false);
+          });
   };
- 
+  
   const getAllCommunityActivities = () => {
-    console.log("get all activities");
-    axios
-      .get(
-        `http://localhost:8080/api/community-activities/all-community-activities`
-      )
-      .then((response) => {
-        // Filtrăm activitățile cu date viitoare
-        const filteredActivities = response.data.filter(
-          (activity) =>
-            new Date(activity.date) < new Date() && !activity.hasFeedback
-        );
- 
-        setCommunityActivities(filteredActivities);
-        console.log(filteredActivities);
-      })
-      .catch((error) => {
-        console.error("Error retrieving activities:", error);
-      })
-      .finally(() => {
-        // Set loading to false when the data is loaded or an error occurs
-        setLoadingCommunityActivity(false);
-      });
+      console.log("Getting all community activities");
+      axios
+          .get(`http://localhost:8080/api/community-activities/all-community-activities`)
+          .then((response) => {
+              const filteredActivities = response.data.filter((item) => !item.hasFeedback);
+              setCommunityActivities(filteredActivities);
+              console.log(filteredActivities);
+          })
+          .catch((error) => {
+              console.error("Error retrieving activities:", error);
+          })
+          .finally(() => {
+              // Set loading to false when the data is loaded or an error occurs
+              setLoadingCommunity(false);
+          });
   };
- 
+
   useEffect(() => {
-    getAllActivities();
-    getAllCommunityActivities();
+      getAllActivities();
+      getAllCommunityActivities();
   }, []);
- 
-  const combinedActivities = [...activities, ...communityActivities];
- 
-  const handleAccept = (item, index) => {
-    const newScore = newScores[index];
-    if (newScore !== undefined) {
-      if (Array.isArray(item.adults)) {
-        updateCommunityActivityScore(item, newScore);
-      } else if (typeof item.adult === "object") {
-        updateActivityScore(item, newScore);
-      } else {
-        console.error("Invalid adult format:", item.adult);
+
+  const handleAccept = async (item, type,score) => {
+      console.log("Accept clicked:", item, type,score);
+      try {
+          if (type === 0) {
+              VERIFY_URL = "/api/activities/feedback"
+          } else {
+              VERIFY_URL = "/api/community-activities/feedback"
+          }
+          console.log(VERIFY_URL);
+          const response = await axios.post(
+            VERIFY_URL,
+            JSON.stringify({
+              date: item.date,
+              description: item.description,
+              feedback: score,
+            }),
+            {
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          console.log(response.data);
+      } catch (err) {
+          console.log(err);
       }
-    } else {
-      alert("Score is not defined. Please enter a valid score.");
-    }
+      const updatedActivities = activities.filter((user) => user.id !== item.id);
+      const updatedCommunity = communityActivities.filter((user) => user.id !== item.id);
+      setActivities(updatedActivities);
+      setCommunityActivities(updatedCommunity);
+      setSuccessMessage("Feedback successfully given!");
+      setDenyMessage("");
   };
- 
-  const updateActivityScore = async (item, score) => {
-    try {
-      const response = await axios.post(
-        ACTIVITIES_URL,
-        JSON.stringify({
-          date: item.date,
-          description: item.description,
-          feedback: score,
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      setFlag(true);
-      setTimeout(() => setFlag(false), 3000);
-    } catch (err) {
-      console.log(err);
-    }
- 
-    console.log("Activity updated successfully");
-    getAllActivities();
-    getAllCommunityActivities();
-    const updatedActivities = activities.filter(
-          (activity) =>
-            new Date(activity.date) < new Date() && !activity.hasFeedback
-        );
-    setActivities(updatedActivities);
-    const updatedCommunityActivities = communityActivities.filter(
-        (activity) =>
-          new Date(activity.date) < new Date() && !activity.hasFeedback
-      );
-    setCommunityActivities(updatedCommunityActivities);
-    setSuccessMessage("Feedback successfully given!");
+
+  
+  const handleSnackbarClose = () => {
+      setDenyMessage("");
+      setSuccessMessage("");
   };
- 
-  const updateCommunityActivityScore = async (item, score) => {
-    try {
-      const response = await axios.post(
-        COMMUNITYACTIVITIES_URL,
-        JSON.stringify({
-          date: item.date,
-          description: item.description,
-          feedback: score,
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      setFlag(true);
-      setTimeout(() => setFlag(false), 3000);
-    } catch (err) {
-      console.log(err);
-    }
- 
-    console.log("Activity updated successfully");
-    getAllActivities();
-    getAllCommunityActivities();
-    const updatedActivities = activities.filter(
-        (activity) =>
-          new Date(activity.date) < new Date() && !activity.hasFeedback
-      );
-  setActivities(updatedActivities);
-  const updatedCommunityActivities = communityActivities.filter(
-      (activity) =>
-        new Date(activity.date) < new Date() && !activity.hasFeedback
-    );
-  setCommunityActivities(updatedCommunityActivities);
-  setSuccessMessage("Feedback successfully given!");
-  };
- 
+  
   return (
-    <>
-      <NavbarAdmin />
-      <h1 className="tab-title">Give feedback</h1>
- 
-      {loadingActivity || loadingCommunityActivity ? (
-        <div className="loading-container">
-          <CircularProgress />
-        </div>
-      ) : (
-        <table className="table-container">
-          <thead>
-            <tr>
-              <th>Adult</th>
-              <th>Nume copil</th>
-              <th>Data</th>
-              <th>Description</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {combinedActivities.map((item, index) => (
-              <tr key={item.id.timestamp}>
-                <td>
-                  {Array.isArray(item.adults) ? (
-                    item.adults.map((adult, adultIndex) => (
-                      <span key={adultIndex}>{adult.username} </span>
-                    ))
-                  ) : (
-                    <span>{item.adult && item.adult.username}</span>
-                  )}
-                </td>
-                <td>
-                  {Array.isArray(item.children) ? (
-                    item.children.map((child, childIndex) => (
-                      <span key={childIndex}>{child.name} </span>
-                    ))
-                  ) : (
-                    <span>{item.child && item.child.name}</span>
-                  )}
-                </td>
-                <td>{item.date}</td>
-                <td>{item.description}</td>
-                <td style={{ display: "flex", alignItems: "center" }}>
-                  <input
-                    type="number"
-                    value={newScores[index] || ""}
-                    onChange={(e) => {
-                      const updatedScores = [...newScores];
-                      updatedScores[index] = e.target.value;
-                      setNewScores(updatedScores);
-                    }}
-                    style={{ marginLeft: "10px", marginRight: "5px" }}
-                  />
-                  <img
-                    src={accept}
-                    alt="Accept"
-                    onClick={() => handleAccept(item, index)}
-                    style={{ cursor: "pointer" }}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </>
+      <>
+          <NavbarAdmin />
+          <h1 className="tab-title">Give feedback</h1>
+
+          {loadingActivity !== false || loadingCommunity !== false ? (
+              <div className="loading-container">
+                  <CircularProgress />
+              </div>
+          ) : activities.length > 0 || communityActivities.length > 0 ? (
+              <table className="table-container">
+                  <thead>
+                  <tr>
+                      <th>Organizator</th>
+                      <th>Nume copil</th>
+                      <th>Descriere</th>
+                      <th>Data</th>
+                      <th>Feedback</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {activities.map((item,index) => (
+                      <tr key={item.id}>
+                          <td>{item.adult.username}</td>
+                          <td>{item.child.name}</td>
+                          <td>{item.description}</td>
+                          <td>{item.date}</td>
+                          <td>
+              <input
+                type="number"
+                value={newScoresActivities[index] || ""}
+                onChange={(e) => {
+                  const updatedScores = [...newScoresActivities];
+                  updatedScores[index] = e.target.value;
+                  setNewScoresActivities(updatedScores);
+                }}
+                style={{ marginLeft: "10px", marginRight: "5px" }}
+              />
+              <img
+                src={accept}
+                alt="Accept"
+                onClick={() => handleAccept(item, 0, newScoresActivities[index])}
+                style={{ cursor: "pointer" }}
+              />
+            </td>
+                      </tr>
+                  ))}
+                  {communityActivities.map((item,index) => (
+                      <tr key={item.id}>
+                          <td>{item.organizer.username}</td>
+                          <td>
+  {Array.isArray(item.children) ? (
+    item.children.map((child, childIndex) => (
+      <span key={childIndex}>{child.name} </span>
+    ))
+  ) : (
+    <span>{item.child && item.child.name}</span>
+  )}
+</td>
+
+                          <td>{item.description}</td>
+                          <td>{item.date}</td>
+                          <td>
+              <input
+                type="number"
+                value={newScoresCommunity[index] || ""}
+                onChange={(e) => {
+                  const updatedScores = [...newScoresCommunity];
+                  updatedScores[index] = e.target.value;
+                  setNewScoresCommunity(updatedScores);
+                }}
+                style={{ marginLeft: "10px", marginRight: "5px" }}
+              />
+              <img
+                src={accept}
+                alt="Accept"
+                onClick={() => handleAccept(item, 1, newScoresCommunity[index])}
+                style={{ cursor: "pointer" }}
+              />
+            </td>
+                      </tr>
+                  ))}
+                  </tbody>
+              </table>
+          ) : (
+              <h5 className="tab-empty-list">No activities to give feedback to.</h5>
+          )}
+          <Snackbar
+              open={!!successMessage || !!denyMessage}
+              autoHideDuration={3000}
+              onClose={handleSnackbarClose}
+              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          >
+              { successMessage ? (
+                  <Alert
+                      severity="success"
+                      sx={{ width: "100%" }}
+                  >
+                      {successMessage}
+                  </Alert>
+              ) : (
+                  <Alert
+                      severity="error"
+                      sx={{ width: "100%" }}
+                  >
+                      {denyMessage}
+                  </Alert>
+              )}
+          </Snackbar>
+      </>
   );
 };
 export default GiveFeedback;
