@@ -67,10 +67,8 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
     return (
         <>
           <Navbar userData={userData} setUserData={setUserData} />
-          <div className="profile-container">
-            <UserPhoto userData={userData} />
-            <Map lat={userData.lat} lng={userData.lng} />
-          </div>
+          <br></br>
+          <h1 className="tab-title">Creeaza activitate</h1>
           {!userData.verified && (
             <button type="button" className="eval-button" onClick={handleVerify}>
               Verify
@@ -110,7 +108,7 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
             <div className="form-row">
               <div className="form-field">
                 <span className="formStyling" htmlFor="duration">
-                  Durata:{" "}
+                  <label>Durata:{" "}</label>
                 </span>
                 <select
                   id="duration"
@@ -140,7 +138,7 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
             </div>
             <div className="form-row">
               <div className="form-field">
-                <label>Adults:</label>
+                <label>Mentori:</label>
                 <input
                   type="text"
                   name="adults"
