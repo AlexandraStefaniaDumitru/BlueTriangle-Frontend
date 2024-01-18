@@ -55,7 +55,7 @@ const Navbar = ({score, userData, setUserData}) => {
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                <Tooltip title="Sign in">
+                <Tooltip title="Conectare">
                     <Link to="/register">
                         <img src={signUp} alt="Register"/>
                     </Link>
