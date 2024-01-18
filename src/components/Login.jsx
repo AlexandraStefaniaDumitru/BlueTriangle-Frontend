@@ -40,7 +40,7 @@ const Login = ({ userData, setUserData }) => {
       );
       console.log(response.data);
       setUserData(response.data);
-      if (response.data.role.role === "USER" ) {
+      if (response.data.role === "USER" ) {
         setTimeout(() => {
           navigate(`/profile/:${userData.username}`);
         }, 1000);
