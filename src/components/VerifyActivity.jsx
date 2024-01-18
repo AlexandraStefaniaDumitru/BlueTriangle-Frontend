@@ -126,7 +126,7 @@ const VerifyActivity = () => {
     return (
         <>
             <NavbarAdmin />
-            <h1 className="tab-title">Verify activities</h1>
+            <h1 className="tab-title">Verifica activitati</h1>
 
             {loadingActivity !== false || loadingCommunity !== false ? (
                 <div className="loading-container">
@@ -191,7 +191,7 @@ const VerifyActivity = () => {
                     </tbody>
                 </table>
             ) : (
-                <h5 className="tab-empty-list">No activities to verify.</h5>
+                <h5 className="tab-empty-list">Toate activitatile au fost verificate.</h5>
             )}
             <Snackbar
                 open={!!successMessage || !!denyMessage}

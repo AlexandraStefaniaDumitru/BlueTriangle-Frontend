@@ -10,6 +10,7 @@ import login from "../../../assets/login.png";
 import signUp from "../../../assets/signUp.png";
 import "./navbar.css";
 import "./RankNav";
+import { Tooltip } from "@mui/material";
 
 const Navbar = ({score, userData, setUserData}) => {
     const [rankInfo] = useState({
@@ -54,28 +55,41 @@ const Navbar = ({score, userData, setUserData}) => {
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                <Link to="/register">
-                    <img src={signUp} alt="Register"/>
-                </Link>
-                <Link to={profile}>
-                    <img src={profileImage} alt="Profile"/>
-                </Link>
-                {userData.verified && (
-                    <Link to="/children">
-                        <img src={childrenImage} alt="Children"/>
+                <Tooltip title="Conectare">
+                    <Link to="/register">
+                        <img src={signUp} alt="Register"/>
                     </Link>
+                </Tooltip>
+                <Tooltip title="Profil">
+                    <Link to={profile}>
+                        <img src={profileImage} alt="Profile"/>
+                    </Link>
+                </Tooltip>
+                {userData.verified && (
+                    <Tooltip title="Copii">
+                        <Link to="/children">
+                            <img src={childrenImage} alt="Children"/>
+                        </Link>
+                    </Tooltip>
                 )}
-                <Link to={communityActivities}>
-                    <img src={communityActivitiesImage} alt="Community activities"/>
-                </Link>
-                <Link to={createCommunityActivity}>
-                    <img src={createForm} alt="Create a community activity"/>
-                </Link>
+                <Tooltip title="Activitati">
+                    <Link to={communityActivities}>
+                        <img src={communityActivitiesImage} alt="Community activities"/>
+                    </Link>
+                </Tooltip>
+                <Tooltip title="Creeaza activitate">
+                    <Link to={createCommunityActivity}>
+                        <img src={createForm} alt="Create a community activity"/>
+                    </Link>
+                </Tooltip>
             </div>
             <div className="navbar-right">
-                <Link to="/login">
-                    <img src={logoutImage} alt="Logout"/>
-                </Link>
+                <Tooltip title="Deconecteaza-te">
+                    <Link to="/login">
+                        <img src={logoutImage} alt="Logout"/>
+                    </Link>
+                </Tooltip>
+
             </div>
         </nav>
     );

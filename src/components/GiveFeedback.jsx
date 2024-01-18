@@ -112,7 +112,7 @@ const GiveFeedback = () => {
   return (
       <>
           <NavbarAdmin />
-          <h1 className="tab-title">Give feedback</h1>
+          <h1 className="tab-title">Ofera feedback</h1>
 
           {loadingActivity !== false || loadingCommunity !== false ? (
               <div className="loading-container">
@@ -202,7 +202,7 @@ const GiveFeedback = () => {
                   </tbody>
               </table>
           ) : (
-              <h5 className="tab-empty-list">No activities to give feedback to.</h5>
+              <h5 className="tab-empty-list">Toate activitatile au primit feedback.</h5>
           )}
           <Snackbar
               open={!!successMessage || !!denyMessage}

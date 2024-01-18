@@ -72,9 +72,9 @@ const Login = ({ userData, setUserData }) => {
         >
           {errMsg}
         </p>
-        <h1>Login</h1>
+        <h1>Conecteaza-te</h1>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Nume utilizator:</label>
           <input
             type="text"
             id="username"
@@ -85,7 +85,7 @@ const Login = ({ userData, setUserData }) => {
             required
           />
 
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Parola:</label>
           <input
             type="password"
             id="password"
@@ -93,14 +93,14 @@ const Login = ({ userData, setUserData }) => {
             value={pwd}
             required
           />
-          <button>Login</button>
+          <button>Conectare</button>
         </form>
         <div className="loginLine">
           <p>
-            Not registered yet?
+            Nu ai cont inca?
             <br />
             <span className="line">
-              <Link to="/register">Sign Up</Link>
+              <Link to="/register">Inregistreaza-te</Link>
             </span>
           </p>
         </div>

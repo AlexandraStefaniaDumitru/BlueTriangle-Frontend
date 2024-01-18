@@ -12,26 +12,29 @@ const NavbarAdmin = () => {
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                <Tooltip title="Verify user">
+                <Tooltip title="Verifica utilizatori">
                     <Link to="/verify-user">
                         <img src={verifyUser} alt="Register"/>
                     </Link>
                 </Tooltip>
-                <Tooltip title="Verify activity">
+                <Tooltip title="Verifica activitati">
                     <Link to="/verify-activity">
                         <img src={verifyActivity} alt="Register"/>
                     </Link>
                 </Tooltip>
-                <Tooltip title="Give feedback">
+                <Tooltip title="Ofera feedback">
                     <Link to="/give-feedback">
                         <img src={giveFeedback} alt="Register"/>
                     </Link>
                 </Tooltip>
             </div>
             <div className="navbar-right">
-                <Link to="/login">
-                    <img src={logoutImage} alt="Logout"/>
-                </Link>
+                <Tooltip title="Deconecteaza-te">
+                    <Link to="/login">
+                        <img src={logoutImage} alt="Logout"/>
+                    </Link>
+                </Tooltip>
+
             </div>
         </nav>
     );

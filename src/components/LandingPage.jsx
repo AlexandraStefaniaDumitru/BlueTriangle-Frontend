@@ -21,10 +21,10 @@ const LandingPage = () => {
         <p>Empowering Children for a Better Tomorrow</p>
         <div className="button-container">
           <button className="login-button" onClick={handleLogin}>
-            Login
+            Conectare
           </button>
           <button className="register-button" onClick={handleRegister}>
-            Register
+            Inregistrare
           </button>
         </div>
       </div>
