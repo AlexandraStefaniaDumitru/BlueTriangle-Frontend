@@ -21,10 +21,17 @@ const GiveFeedback = () => {
       axios
           .get(`http://localhost:8080/api/activities`)
           .then((response) => {
-              const filteredActivities = response.data.filter((item) => !item.hasFeedback);
-              setActivities(filteredActivities);
-              console.log(filteredActivities);
+            const currentDate = Date.now();
+          
+            const filteredActivities = response.data.filter((item) => {
+              const activityDate = new Date(item.date).getTime();
+              return activityDate < currentDate && !item.hasFeedback;
+            });
+          
+            setActivities(filteredActivities);
+            console.log(filteredActivities);
           })
+          
           .catch((error) => {
               console.error("Error retrieving activities:", error);
           })
@@ -39,10 +46,17 @@ const GiveFeedback = () => {
       axios
           .get(`http://localhost:8080/api/community-activities/all-community-activities`)
           .then((response) => {
-              const filteredActivities = response.data.filter((item) => !item.hasFeedback);
-              setCommunityActivities(filteredActivities);
-              console.log(filteredActivities);
+            const currentDate = Date.now();
+          
+            const filteredCommunityActivities = response.data.filter((item) => {
+              const activityDate = new Date(item.date).getTime();
+              return activityDate < currentDate && !item.hasFeedback;
+            });
+          
+            setCommunityActivities(filteredCommunityActivities);
+            console.log(filteredCommunityActivities);
           })
+          
           .catch((error) => {
               console.error("Error retrieving activities:", error);
           })
@@ -123,23 +137,28 @@ const GiveFeedback = () => {
                           <td>{item.description}</td>
                           <td>{item.date}</td>
                           <td>
-              <input
-                type="number"
-                value={newScoresActivities[index] || ""}
-                onChange={(e) => {
-                  const updatedScores = [...newScoresActivities];
-                  updatedScores[index] = e.target.value;
-                  setNewScoresActivities(updatedScores);
-                }}
-                style={{ marginLeft: "10px", marginRight: "5px" }}
-              />
-              <img
-                src={accept}
-                alt="Accept"
-                onClick={() => handleAccept(item, 0, newScoresActivities[index])}
-                style={{ cursor: "pointer" }}
-              />
-            </td>
+  <div style={{ display: 'flex', alignItems: 'center', paddingLeft: "30px" }}>
+    <input
+      type="number"
+      value={newScoresActivities[index] || ""}
+      onChange={(e) => {
+        const updatedScores = [...newScoresActivities];
+        updatedScores[index] = e.target.value;
+        setNewScoresActivities(updatedScores);
+      }}
+      style={{ marginRight: "-50px" }}
+    />
+    <img
+      src={accept}
+      alt="Accept"
+      onClick={() => handleAccept(item, 0, newScoresActivities[index])}
+      style={{ cursor: "pointer", marginLeft: "auto" }}
+    />
+  </div>
+</td>
+
+
+
                       </tr>
                   ))}
                   {communityActivities.map((item,index) => (
@@ -158,6 +177,7 @@ const GiveFeedback = () => {
                           <td>{item.description}</td>
                           <td>{item.date}</td>
                           <td>
+             <div style={{ display: 'flex', alignItems: 'center', paddingLeft: "30px" }}>
               <input
                 type="number"
                 value={newScoresCommunity[index] || ""}
@@ -166,14 +186,16 @@ const GiveFeedback = () => {
                   updatedScores[index] = e.target.value;
                   setNewScoresCommunity(updatedScores);
                 }}
-                style={{ marginLeft: "10px", marginRight: "5px" }}
+                style={{ marginRight: "-50px" }}
               />
+                
               <img
                 src={accept}
                 alt="Accept"
                 onClick={() => handleAccept(item, 1, newScoresCommunity[index])}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginLeft: "auto" }}
               />
+              </div>
             </td>
                       </tr>
                   ))}

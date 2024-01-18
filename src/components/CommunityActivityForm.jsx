@@ -97,7 +97,7 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
                 </div>
                 <div className="input-group flex-nowrap">
           <span className="formStyling" htmlFor="duration">
-            Durata:{" "}
+                        <label>Durata:{" "}</label>
           </span>
                     <select
                         id="duration"
