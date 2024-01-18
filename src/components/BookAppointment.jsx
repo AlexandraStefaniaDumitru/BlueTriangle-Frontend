@@ -101,10 +101,10 @@ const BookAppointment = ({ child, userdata }) => {
   };
   return (
     <div id="mainDiv" className="text-info bg-dark">
-      <h1>Programeaza intalnire</h1>
+      <h1>Programeaza activitate</h1>
       <form>
         <div className="input-group flex-nowrap">
-          <span className="formStyling">Data intalnirii:</span>
+          <span className="formStyling">Data activitatii:</span>
           <input
             className={`form-control ${validDate}`}
             aria-label="date"
