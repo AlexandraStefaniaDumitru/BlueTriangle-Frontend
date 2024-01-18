@@ -66,96 +66,108 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
 
     return (
         <>
-            <Navbar userData={userData} setUserData={setUserData}/>
-            <div className="profile-container">
-                <UserPhoto userData={userData}/>
-                <Map lat={userData.lat} lng={userData.lng}/>
+          <Navbar userData={userData} setUserData={setUserData} />
+          <div className="profile-container">
+            <UserPhoto userData={userData} />
+            <Map lat={userData.lat} lng={userData.lng} />
+          </div>
+          {!userData.verified && (
+            <button type="button" className="eval-button" onClick={handleVerify}>
+              Verify
+            </button>
+          )}
+          <div className ="divForActivity">
+          <form onSubmit={handleSubmit} className="form-container">
+            <div className="form-row">
+              <div className="form-field">
+                <label>Description:</label>
+                <input
+                  type="text"
+                  name="description"
+                  value={activity.description}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-field">
+                <label>Date:</label>
+                <input
+                  type="text"
+                  name="date"
+                  value={activity.date}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-field">
+                <label>Organizer:</label>
+                <input
+                  type="text"
+                  name="organizer"
+                  value={activity.organizer}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-            {!userData.verified && (
-                <button type="button" className="eval-button" onClick={handleVerify}>
-                    Verify
-                </button>
-            )}
-            <form onSubmit={handleSubmit} className="form-container">
-                <div className="form-field">
-                    <label>Description:</label>
-                    <input
-                        type="text"
-                        name="description"
-                        value={activity.description}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-field">
-                    <label>Date:</label>
-                    <input
-                        type="text"
-                        name="date"
-                        value={activity.date}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="input-group flex-nowrap">
-          <span className="formStyling" htmlFor="duration">
-            Durata:{" "}
-          </span>
-                    <select
-                        id="duration"
-                        onChange={(e) => {
-                            setDuration(e.target.value);
-                            setActivity({...activity, duration: e.target.value});
-                        }}
-                        className="form-field"
-                        aria-label="duration"
-                        aria-describedby="addon-wrapping"
-                    >
-                        <option selected style={{ display: "none" }}>
-                            Durata activitatii
-                        </option>
-                        <option value={1}>1h</option>
-                        <option value={2}>2h</option>
-                        <option value={3}>3h</option>
-                        <option value={4}>4h</option>
-                        <option value={5}>5h</option>
-                        <option value={6}>6h</option>
-                        <option value={7}>7h</option>
-                        <option value={8}>8h</option>
-                        <option value={9}>9h</option>
-                        <option value={10}>10h</option>
-                    </select>
-                </div>
-                <div className="form-field">
-                    <label>Organizer:</label>
-                    <input
-                        type="text"
-                        name="organizer"
-                        value={activity.organizer}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-field">
-                    <label>Adults:</label>
-                    <input
-                        type="text"
-                        name="adults"
-                        value={activity.adults}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-field">
-                    <label>Children:</label>
-                    <input
-                        type="text"
-                        name="children"
-                        value={activity.children}
-                        onChange={handleChange}
-                    />
-                </div>
-                <button type="submit" className="submit-button">Create Activity</button>
-            </form>
-            {successMessage && <div className="success-message">{successMessage}</div>}
+            <div className="form-row">
+              <div className="form-field">
+                <span className="formStyling" htmlFor="duration">
+                  Duration:{" "}
+                </span>
+                <select
+                  id="duration"
+                  onChange={(e) => {
+                    setDuration(e.target.value);
+                    setActivity({ ...activity, duration: e.target.value });
+                  }}
+                  className="form-field"
+                  aria-label="duration"
+                  aria-describedby="addon-wrapping"
+                >
+                  <option selected style={{ display: "none" }}>
+                    Durata activitatii
+                    </option>
+            <option value={1}>1h</option>
+            <option value={2}>2h</option>
+            <option value={3}>3h</option>
+            <option value={4}>4h</option>
+            <option value={5}>5h</option>
+            <option value={6}>6h</option>
+            <option value={7}>7h</option>
+            <option value={8}>8h</option>
+            <option value={9}>9h</option>
+            <option value={10}>10h</option>
+          </select>
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-field">
+                <label>Adults:</label>
+                <input
+                  type="text"
+                  name="adults"
+                  value={activity.adults}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-field">
+                <label>Children:</label>
+                <input
+                  type="text"
+                  name="children"
+                  value={activity.children}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <button type="submit" className="submit-button">
+              Create Activity
+            </button>
+          </form>
+          </div>
+          {successMessage && <div className="success-message">{successMessage}</div>}
         </>
-    );
+      );
+      
+      
 };
 
 export default CommunityActivityForm;
