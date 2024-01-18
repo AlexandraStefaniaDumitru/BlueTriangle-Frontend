@@ -32,13 +32,13 @@ const CommunityActivitiesTable = ({activities, currentUser, setActivities}) => {
         <table className="community-activities-table">
             <thead>
             <tr>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Organizer</th>
-                <th>Participants</th>
-                <th>Children</th>
-                <th>Actions</th>
+                <th>Descriere</th>
+                <th>Data</th>
+                <th>Durata</th>
+                <th>Organizator</th>
+                <th>Participanti</th>
+                <th>Copii</th>
+                <th>Actiuni</th>
             </tr>
             </thead>
             <tbody>
@@ -55,7 +55,7 @@ const CommunityActivitiesTable = ({activities, currentUser, setActivities}) => {
                             onClick={() => handleJoinActivity(activity, activity.id)}
                             disabled={currentUser && (activity.organizer && currentUser.username === activity.organizer.username || isUserParticipating(activity))}
                         >
-                            Join
+                            Alatura-te
                         </button>
                     </td>
                 </tr>

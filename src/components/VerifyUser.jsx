@@ -88,7 +88,7 @@ const VerifyUser = () => {
     return (
         <>
             <NavbarAdmin />
-            <h1 className="tab-title">Verify users</h1>
+            <h1 className="tab-title">Verifica utilizatori</h1>
 
             {loading ? (
                 <div className="loading-container">
@@ -101,8 +101,8 @@ const VerifyUser = () => {
                         <th>Nume</th>
                         <th>Email</th>
                         <th>Descriere</th>
-                        <th>Birthdate</th>
-                        <th>Verify</th>
+                        <th>Ziua nasterii</th>
+                        <th>Verifica</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -131,7 +131,7 @@ const VerifyUser = () => {
                     </tbody>
                 </table>
             ) : (
-                <h5 className="tab-empty-list">No users to verify.</h5>
+                <h5 className="tab-empty-list">Toti utilizatorii au fost verificati.</h5>
             )}
             <Snackbar
                 open={!!successMessage || !!denyMessage}

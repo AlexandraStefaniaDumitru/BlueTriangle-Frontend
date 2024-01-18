@@ -80,7 +80,7 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
           <form onSubmit={handleSubmit} className="form-container">
             <div className="form-row">
               <div className="form-field">
-                <label>Description:</label>
+                <label>Descriere:</label>
                 <input
                   type="text"
                   name="description"
@@ -89,7 +89,7 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
                 />
               </div>
               <div className="form-field">
-                <label>Date:</label>
+                <label>Data:</label>
                 <input
                   type="text"
                   name="date"
@@ -98,7 +98,7 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
                 />
               </div>
               <div className="form-field">
-                <label>Organizer:</label>
+                <label>Organizator:</label>
                 <input
                   type="text"
                   name="organizer"
@@ -110,7 +110,7 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
             <div className="form-row">
               <div className="form-field">
                 <span className="formStyling" htmlFor="duration">
-                  Duration:{" "}
+                  Durata:{" "}
                 </span>
                 <select
                   id="duration"
@@ -149,7 +149,7 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
                 />
               </div>
               <div className="form-field">
-                <label>Children:</label>
+                <label>Copii:</label>
                 <input
                   type="text"
                   name="children"
@@ -159,7 +159,7 @@ const CommunityActivityForm = ({onSubmit, userData, setUserData}) => {
               </div>
             </div>
             <button type="submit" className="submit-button">
-              Create Activity
+              Creeaza activitatea
             </button>
           </form>
           </div>

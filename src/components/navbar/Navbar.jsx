@@ -60,33 +60,36 @@ const Navbar = ({score, userData, setUserData}) => {
                         <img src={signUp} alt="Register"/>
                     </Link>
                 </Tooltip>
-                <Tooltip title="Profile">
+                <Tooltip title="Profil">
                     <Link to={profile}>
                         <img src={profileImage} alt="Profile"/>
                     </Link>
                 </Tooltip>
                 {userData.verified && (
-                    <Tooltip title="Children">
+                    <Tooltip title="Copii">
                         <Link to="/children">
                             <img src={childrenImage} alt="Children"/>
                         </Link>
                     </Tooltip>
                 )}
-                <Tooltip title="Community activities">
+                <Tooltip title="Activitati">
                     <Link to={communityActivities}>
                         <img src={communityActivitiesImage} alt="Community activities"/>
                     </Link>
                 </Tooltip>
-                <Tooltip title="Create activity">
+                <Tooltip title="Creeaza activitate">
                     <Link to={createCommunityActivity}>
                         <img src={createForm} alt="Create a community activity"/>
                     </Link>
                 </Tooltip>
             </div>
             <div className="navbar-right">
-                <Link to="/login">
-                    <img src={logoutImage} alt="Logout"/>
-                </Link>
+                <Tooltip title="Deconecteaza-te">
+                    <Link to="/login">
+                        <img src={logoutImage} alt="Logout"/>
+                    </Link>
+                </Tooltip>
+
             </div>
         </nav>
     );

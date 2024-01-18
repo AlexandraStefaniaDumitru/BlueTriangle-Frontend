@@ -110,7 +110,7 @@ const Register = ({ userData, setUserData }) => {
         <section>
           <h1>Success!</h1>
           <p>
-            <a href="#">Sign In</a>
+            <a href="#">Conectare</a>
           </p>
         </section>
       ) : (
@@ -123,10 +123,10 @@ const Register = ({ userData, setUserData }) => {
             >
               {errMsg}
             </p>
-            <h1>Register</h1>
+            <h1>Inregistrare</h1>
             <form onSubmit={handleSubmit}>
               <label htmlFor="username">
-                Username:
+                Nume utilizator:
                 <FontAwesomeIcon
                   icon={faCheck}
                   className={validName ? "valid" : "hide"}
@@ -164,7 +164,7 @@ const Register = ({ userData, setUserData }) => {
               </p>
 
               <label htmlFor="description">
-                Description:
+                Descriere:
                 <FontAwesomeIcon
                   icon={faCheck}
                   className={validDescription ? "valid" : "hide"}
@@ -201,7 +201,7 @@ const Register = ({ userData, setUserData }) => {
               </p>
 
               <label htmlFor="password">
-                Password:
+                Parola:
                 <FontAwesomeIcon
                   icon={faCheck}
                   className={validPwd ? "valid" : "hide"}
@@ -231,7 +231,7 @@ const Register = ({ userData, setUserData }) => {
               </p>
 
               <label htmlFor="confirm_pwd">
-                Confirm Password:
+                Confirmare parola:
                 <FontAwesomeIcon
                   icon={faCheck}
                   className={validMatch && matchPwd ? "valid" : "hide"}
@@ -272,15 +272,15 @@ const Register = ({ userData, setUserData }) => {
               <button
                 disabled={!validName || !validPwd || !validMatch ? true : false}
               >
-                Sign Up
+                Inregistreaza-te
               </button>
             </form>
             <div className="registerLine">
               <p>
-                Already registered?
+                Ai cont deja?
                 <br />
                 <span>
-                  <Link to="/login">Sign In</Link>
+                  <Link to="/login">Conecteaza-te</Link>
                 </span>
               </p>
             </div>
