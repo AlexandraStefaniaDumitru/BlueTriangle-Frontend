@@ -36,9 +36,10 @@ function History({data, communityData, userData}) {
                     <td>{item.date}</td>
                     <td>{item.duration}</td>
                     <td>{item.description}</td>
-                    <td>
+                    <td  style={{ textAlign: 'center', verticalAlign: 'middle', height: '50px' }}>
                         <button
                             className="invite-button"
+                            style={{ margin: 'auto', height: '100%' }}
                             onClick={() => handleInviteAgain(item.child)}
                         >
                             Invita din nou
@@ -52,14 +53,17 @@ function History({data, communityData, userData}) {
                     <td>{item.date}</td>
                     <td>{item.duration}</td>
                     <td>{item.description}</td>
-                    <td>
-                        <button
-                            className="invite-button"
-                            onClick={() => handleInviteAgainCommunityActivity(item.children)}
-                        >
-                            Invita din nou
-                        </button>
-                    </td>
+                    <td style={{ textAlign: 'center', verticalAlign: 'middle', height: '50px' }}>
+    <button
+        className="invite-button"
+        style={{ margin: 'auto', height: '100%' }}
+        onClick={() => handleInviteAgainCommunityActivity(item.children)}
+    >
+        Invita din nou
+    </button>
+</td>
+
+
                 </tr>
             ))}
             </tbody>
