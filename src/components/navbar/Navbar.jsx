@@ -72,16 +72,20 @@ const Navbar = ({score, userData, setUserData}) => {
                         </Link>
                     </Tooltip>
                 )}
-                <Tooltip title="Activitati">
-                    <Link to={communityActivities}>
-                        <img src={communityActivitiesImage} alt="Community activities"/>
-                    </Link>
-                </Tooltip>
-                <Tooltip title="Creeaza activitate">
-                    <Link to={createCommunityActivity}>
-                        <img src={createForm} alt="Create a community activity"/>
-                    </Link>
-                </Tooltip>
+                {userData.verified && (
+                    <Tooltip title="Activitati">
+                        <Link to={communityActivities}>
+                            <img src={communityActivitiesImage} alt="Community activities"/>
+                        </Link>
+                    </Tooltip>
+                )}
+                {userData.verified && (
+                    <Tooltip title="Creeaza activitate">
+                        <Link to={createCommunityActivity}>
+                            <img src={createForm} alt="Create a community activity"/>
+                        </Link>
+                    </Tooltip>
+                )}
             </div>
             <div className="navbar-right">
                 <Tooltip title="Deconecteaza-te">
